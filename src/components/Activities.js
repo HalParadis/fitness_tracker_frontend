@@ -1,8 +1,10 @@
 import React from "react";
 
 const Activities = () => {
+  
   return <>
     <h2>Activities</h2>
+
   </>
 }
 
