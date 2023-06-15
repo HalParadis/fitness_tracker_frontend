@@ -1,13 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { fetchFromAPI } from '../api'
 
 const Activities = ({
-  activities,
-  setActivities,
   token,
   user
 }) => {
 
+  const [activities, setActivities] = useState([]);
   const fetchActivities = async () => {
     const data = await fetchFromAPI({
       endpoint: "activities",

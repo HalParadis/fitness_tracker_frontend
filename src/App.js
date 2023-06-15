@@ -10,7 +10,6 @@ import {
 } from './components';
 
 const App = () => {
-  const [activities, setActivities] = useState([]);
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
 
@@ -40,8 +39,6 @@ const App = () => {
       <Route path='/activities'>
         <Activities 
           token={token}
-          activities={activities}
-          setActivities={setActivities}
           user={user}
         />
       </Route>
