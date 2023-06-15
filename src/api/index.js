@@ -1,4 +1,4 @@
-const BASE_URL = 'https://fitness-tracker-zlky.onrender.com/';
+const BASE_URL = 'https://fitness-tracker-zlky.onrender.com/api/';
 
 export const fetchFromAPI = async (
   {body, endpoint, method, token}) => {
