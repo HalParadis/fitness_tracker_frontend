@@ -5,7 +5,7 @@ import { Route, Link } from 'react-router-dom';
 import {
   Routines,
   MyRoutines,
-  MyRoutinesForm,
+  UserForm,
   Activities
 } from './components';
 
@@ -19,11 +19,16 @@ const App = () => {
       <header>
         <h1>Fitness Tracker</h1>
         <nav>
-          <Link to="/myRoutines">My Routines</Link> |
           <Link to="/routines">All Routines</Link> |
-          <Link to="/activities">All Activities</Link>
+          <Link to="/activities">All Activities</Link> |
+          {
+            token
+              ? <Link to='/myRoutines'>My Routines</Link>
+              : <Link to='/userForm/login'>Log In</Link>
+          }
         </nav>
       </header>
+
       <Route exact path='/'>
         <h2>Welcome to the site</h2>
       </Route>
@@ -43,8 +48,8 @@ const App = () => {
         />
       </Route>
 
-      <Route path='/myRoutines/:actionType'>
-        <MyRoutinesForm />
+      <Route path='/userForm/:actionType'>
+        <UserForm />
       </Route>
     </>
   )

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { fetchFromAPI } from '../api'
+import { fetchFromAPI } from '../api';
 
 const Activities = ({
   token,
