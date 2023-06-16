@@ -13,7 +13,6 @@ const UserForm = ({ token, setToken, setUser }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('HandleSubmit');
     const result = await fetchFromAPI({
       body: {
         username,

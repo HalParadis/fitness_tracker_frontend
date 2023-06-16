@@ -3,7 +3,6 @@ const BASE_URL = 'https://fitness-tracker-zlky.onrender.com/api/';
 export const fetchFromAPI = async (
   {body, endpoint, method, token}) => {
   try {
-    console.log('entered fetchFromAPI');
     const response = await fetch(
       BASE_URL + endpoint, {
         method: method ? method.toUpperCase() : 'GET',
