@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Link } from 'react-router-dom';
-
+import { Route, Link, useHistory } from 'react-router-dom';
 
 import {
   Routines,
@@ -10,9 +9,17 @@ import {
 } from './components';
 
 const App = () => {
+  const history = useHistory();
+
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
+  const [routines, setRoutines] = useState([]);
 
+  const logout = () => {
+    setToken(null);
+    setUser(null);
+    history.push('/');
+  }
 
   return (
     <>
@@ -23,7 +30,14 @@ const App = () => {
           <Link to="/activities">All Activities</Link> |
           {
             token
-              ? <Link to='/myRoutines'>My Routines</Link>
+              ? <>
+                <Link to='/myRoutines'>My Routines</Link> |
+                <button
+                  className='logoutButton'
+                  type='button'
+                  onClick={logout}
+                >Log Out</button>
+              </>
               : <Link to='/userForm/login'>Log In</Link>
           }
         </nav>
@@ -38,7 +52,10 @@ const App = () => {
       </Route>
 
       <Route path='/myRoutines'>
-        <MyRoutines />
+        <MyRoutines 
+          token={token}
+          user={user}
+        />
       </Route>
 
       <Route path='/activities'>

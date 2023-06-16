@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useParams, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { fetchFromAPI } from '../api';
 
-const UserForm = ({ token, setToken }) => {
+const UserForm = ({ token, setToken, setUser }) => {
   const history = useHistory();
   const params = useParams();
   const { actionType } = params;
@@ -26,6 +26,7 @@ const UserForm = ({ token, setToken }) => {
     if (result.message === "Thank you for registering" || 
         result.message === "you're logged in!") {
       setToken(result.token);
+      setUser(result.user);
       history.push('/myRoutines');
     }
     else {
