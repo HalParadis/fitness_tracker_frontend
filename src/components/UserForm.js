@@ -13,6 +13,7 @@ const UserForm = ({ token, setToken }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log('HandleSubmit');
     const result = await fetchFromAPI({
       body: {
         username,
@@ -22,7 +23,8 @@ const UserForm = ({ token, setToken }) => {
       endpoint: `/users/${actionType}`
     });
 
-    if (result.message === "Thank you for registering") {
+    if (result.message === "Thank you for registering" || 
+        result.message === "you're logged in!") {
       setToken(result.token);
       history.push('/myRoutines');
     }
@@ -60,7 +62,7 @@ const UserForm = ({ token, setToken }) => {
           name='password'
           value={password}
           onChange={event => setPassword(event.target.value)}
-          minLength='3'
+          minLength='8'
           maxLength='20'
           required
         />

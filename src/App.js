@@ -49,7 +49,11 @@ const App = () => {
       </Route>
 
       <Route path='/userForm/:actionType'>
-        <UserForm />
+        <UserForm 
+          token={token}
+          setToken={setToken}
+          setUser={setUser}
+        />
       </Route>
     </>
   )

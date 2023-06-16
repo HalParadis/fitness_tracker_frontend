@@ -14,6 +14,7 @@ export const fetchFromAPI = async (
       }
     );
     const result = await response.json();
+    console.log('fetchFromAPI result', result);
     return result;
   }
   catch(err) {
