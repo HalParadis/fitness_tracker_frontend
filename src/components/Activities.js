@@ -8,8 +8,8 @@ const Activities = ({
   const [activities, setActivities] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const [name, setName] = useState([]);
-  const [description, setDescription] = useState([]);
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
 
   const fetchActivities = async () => {
     const data = await fetchFromAPI({
