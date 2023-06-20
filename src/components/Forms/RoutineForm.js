@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { fetchFromAPI } from "../../api";
 
-const RoutineForm = ({ token, user, routineId, fetchMyRoutines }) => {
-  const [name, setName] = useState('');
-  const [goal, setGoal] = useState('');
-
-
+const RoutineForm = ({ token, routine, fetchMyRoutines }) => {
+  const [name, setName] = useState(routine ? routine.name : '');
+  const [goal, setGoal] = useState(routine ? routine.goal : '');
   const [errorMessage, setErrorMessage] = useState(null);
+
+  const routineId = routine ? routine.id : undefined;
   
   const handleSubmit = async (event) => {
-    console.log("error thingy",`routines/${routineId && routineId}`);
+    //console.log("error thingy",`routines/${routineId && routineId}`);
     event.preventDefault();
     const result = await fetchFromAPI({
       body: {
