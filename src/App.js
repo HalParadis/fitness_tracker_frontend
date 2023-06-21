@@ -4,7 +4,7 @@ import { Route, Link, useHistory } from 'react-router-dom';
 import {
   Routines,
   MyRoutines,
-  UserForm,
+  User,
   Activities
 } from './components';
 
@@ -48,7 +48,7 @@ const App = () => {
                   onClick={logout}
                 >Log Out</button>
               </>
-              : <Link to='/userForm/login'>Log In</Link>
+              : <Link to='/user/login'>Log In</Link>
           }
         </nav>
       </header>
@@ -75,8 +75,8 @@ const App = () => {
         />
       </Route>
 
-      <Route path='/userForm/:actionType'>
-        <UserForm 
+      <Route path='/user/:actionType'>
+        <User 
           token={token}
           setToken={setToken}
           setUser={setUser}

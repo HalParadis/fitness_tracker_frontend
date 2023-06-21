@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useParams, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { fetchFromAPI } from '../api';
 
-const UserForm = ({ token, setToken, setUser }) => {
+const User = ({ token, setToken, setUser }) => {
   const history = useHistory();
   const params = useParams();
   const { actionType } = params;
@@ -69,10 +69,10 @@ const UserForm = ({ token, setToken, setUser }) => {
         <button type='submit'>SUBMIT</button>
         {
           actionType === 'login'
-            ? <Link to='/userForm/register' className='profileFormLink'>
+            ? <Link to='/user/register' className='profileFormLink'>
                 Don't have an account? Register Here.
               </Link>
-            : <Link to='/userForm/login' className='profileFormLink'>
+            : <Link to='/user/login' className='profileFormLink'>
                 Already have an account? Login here.
               </Link>
         }
@@ -81,4 +81,4 @@ const UserForm = ({ token, setToken, setUser }) => {
   )
 }
 
-export default UserForm;
+export default User;

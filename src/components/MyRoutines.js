@@ -119,7 +119,7 @@ const MyRoutines = ({ token, user }) => {
           }
         </div>
       </>
-      : history.push('/userForm/login')
+      : history.push('/user/login')
     }
   </>
 }
