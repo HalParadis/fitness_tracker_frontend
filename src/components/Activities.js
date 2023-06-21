@@ -16,8 +16,6 @@ const Activities = ({
       endpoint: "activities",
     });
 
-    console.log("data: ", data);
-
     if (data) {
       setActivities(data);
     }
@@ -51,8 +49,6 @@ const Activities = ({
 
   useEffect(() => {
     fetchActivities();
-    console.log("activities: ", activities)
-
   }, [])
 
 

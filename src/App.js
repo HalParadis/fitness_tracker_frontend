@@ -11,9 +11,8 @@ import {
 const App = () => {
   const history = useHistory();
 
-  const [token, setToken] = useState(null);
-  const [user, setUser] = useState(null);
-  const [routines, setRoutines] = useState([]);
+  const [token, setToken] = useState(localStorage.getItem('token') ?? '');
+  const [user, setUser] = useState(localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null);
 
   const logout = () => {
     setToken(null);
@@ -21,12 +20,23 @@ const App = () => {
     history.push('/');
   }
 
+  useEffect(() => {
+    if (token !== "") {
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(user));
+    }
+    else {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+    }
+  }, [token]);
+
   return (
     <>
       <header>
         <h1>Fitness Tracker</h1>
         <nav>
-          <Link to="/routines">All Routines</Link> |
+          <Link to="/routines">Public Routines</Link> |
           <Link to="/activities">All Activities</Link> |
           {
             token

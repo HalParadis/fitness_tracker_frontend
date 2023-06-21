@@ -13,8 +13,6 @@ const Routines = ({
       endpoint: "routines",
     });
 
-    console.log("data: ", data);
-
     if (data) {
       setRoutines(data);
     }
