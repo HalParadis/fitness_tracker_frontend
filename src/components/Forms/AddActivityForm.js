@@ -14,9 +14,11 @@ const AddActivityForm = ({
   const [errorMessage, setErrorMessage] = useState(null);
   const [show, setShow] = useState(false);
 
-  // const allowedActivities = activities.filter(activity => {
-  //   return routineActivities.find(routineActivity => )
-  // });
+  const allowedActivities = activities.filter(activity => {
+    return !routineActivities.find(routineActivity => {
+      return routineActivity.name === activity.name;
+    })
+  });
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -67,13 +69,13 @@ const AddActivityForm = ({
         <form onSubmit={handleSubmit} className='addActivityForm'>
           {errorMessage && <p className='errorMessage'>{errorMessage}</p>}
           <select
-            name='allActivities'
+            name='allowedActivities'
             value={chosenActivityName}
             onChange={() => setChosenActivityName(event.target.value)}
           >
             <option value="">Please choose an activity</option>
             {
-              activities.map(activity => {
+              allowedActivities.map(activity => {
                 return <option key={activity.id} value={activity.name}>{activity.name}</option>
               })
             }
