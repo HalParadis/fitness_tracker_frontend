@@ -87,11 +87,25 @@ const MyRoutines = ({ token, user }) => {
                   routine.activities.map((activity, idx) => (
                     <div key={activity.id ?? idx}>
                       <h4>Name: {activity.name}</h4>
+
+                      <button
+                        type='button'
+                        className='deleteActivityButton'
+                        onClick={async () => {
+                          const result = await fetchFromAPI({
+                            token,
+                            method: 'delete',
+                            endpoint: `routine_activities/${activity.routineActivityId}`
+                          });
+                          if (!result.message) fetchMyRoutines();
+                        }}
+                      >Delete Activity</button>
+
                       <p>Description: {activity.description}</p>
                       <p>Duration: {activity.duration}</p>
                       <p>Count: {activity.count}</p>
 
-                      <UpdateActivityForm 
+                      <UpdateActivityForm
                         token={token}
                         fetchMyRoutines={fetchMyRoutines}
                         activity={activity}
