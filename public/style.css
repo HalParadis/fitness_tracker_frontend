@@ -1,0 +1,60 @@
+body {
+  background-color: #1D858D;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#app {
+  min-width: 768px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.activities {
+  border: 3px solid black;
+  border-radius: 5px;
+  padding: 0 1em 0 1em;
+  margin: 1em;
+}
+
+.activity {
+  border: 3px solid black;
+  border-radius: 3px;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
+.horizontalLine {
+  border: .5px solid black;
+}
+
+.publicRoutines {
+  border: 3px solid black;
+  border-radius: 5px;
+  padding: 0 1em 0 1em;
+  margin: 1em;
+}
+
+.routine {
+  border: 3px solid black;
+  border-radius: 3px;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
+.userPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userForm {
+  display: flex;
+  flex-direction: column;
+}

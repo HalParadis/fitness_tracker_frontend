@@ -45,15 +45,13 @@ const Activities = ({
 
   }
 
-
-
   useEffect(() => {
     fetchActivities();
   }, [])
 
 
   return (
-    <>
+    <div className='activities'>
       <h2><u>Activities</u></h2>
 
       {token &&
@@ -83,16 +81,14 @@ const Activities = ({
 
       <div className="displayActivities">
         {activities.map((activity, idx) => (
-          <div key={activity.id ?? idx}>
-            <h3>Name: {activity.name}</h3>
-            <p>Description: {activity.description}</p>
-            <br></br>
-            <hr></hr>
+          <div className='activity' key={activity.id ?? idx}>
+            <h3>{activity.name}</h3>
+            <p>{activity.description}</p>
           </div>
         ))
         }
       </div>
-    </>
+    </div>
   )
 }
 

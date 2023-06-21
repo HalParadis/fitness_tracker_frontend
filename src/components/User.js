@@ -37,7 +37,7 @@ const User = ({ token, setToken, setUser }) => {
   }
 
   return (
-    <>
+    <div className='userPage'>
       {token && history.push('/myRoutines')}
 
       <h2 className='profileFormHeader'>
@@ -77,7 +77,7 @@ const User = ({ token, setToken, setUser }) => {
               </Link>
         }
       </form>
-    </>
+    </div>
   )
 }
 

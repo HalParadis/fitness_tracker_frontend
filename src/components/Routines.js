@@ -24,31 +24,32 @@ const Routines = ({
   }, [])
 
   return (
-    <>
+    <div className='publicRoutines'>
       <h2><u>Routines</u></h2>
       {
         routines.map((routine, idx) => (
-          <div key={routine.id ?? idx}>
-            <h3><u>Name: {routine.name}</u></h3>
+          <div className='routine' key={routine.id ?? idx}>
+            <h3><u>{routine.name}</u></h3>
             <p>Goal: {routine.goal}</p>
             <h6>Creator Name: {routine.creatorName}</h6>
             
+            <div className='horizontalLine'></div>
+
             <h3><u>Activities:</u></h3>
             {
               routine.activities.map((activity, idx) => (
                 <div key={activity.id ?? idx}>
-                  <h4>Name: {activity.name}</h4>
-                  <p>Description: {activity.description}</p>
+                  <h4>{activity.name}</h4>
+                  <p>{activity.description}</p>
                   <p>Duration: {activity.duration}</p>
                   <p>Count: {activity.count}</p>
                 </div>
               ))
             }
-             <hr></hr>
           </div>
         ))
       }
-    </>
+    </div>
   )
 }
 
