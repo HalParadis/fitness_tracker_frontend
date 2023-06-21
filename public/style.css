@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 body {
   background-color: #1D858D;
+  font-family: 'Montserrat', sans-serif;
 }
 
 header {
@@ -46,6 +49,27 @@ header {
   border-radius: 3px;
   padding: 1em;
   margin-bottom: 1em;
+  background-color: #7a8c9d;
+}
+
+.routineForm {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 5px;
+  border: 3px solid aliceblue;
+  margin-bottom: 0.5em;
+}
+
+.routineFormButton {
+  height: fit-content;
+  width: fit-content;
+}
+
+.routineFormContainer {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
 }
 
 .userPage {
@@ -58,3 +82,31 @@ header {
   display: flex;
   flex-direction: column;
 }
+
+.myRoutines {
+  border: 3px solid black;
+  border-radius: 5px;
+  padding: 0 1em 0 1em;
+  margin: 1em;
+  background-color: #10495b;
+}
+
+.myRoutinesHeader {
+  color: aliceblue;
+  margin-right: 1em;
+}
+
+.myRoutinesHeaderContainer {
+  display: flex;
+  align-items: center;
+}
+
+button:hover {
+  cursor: pointer;
+  box-shadow: 0 0 1px 1px black;
+}
+
+button {
+  margin: 5px 5px 5px 0;
+}
+

@@ -10,6 +10,8 @@ const UpdateActivityForm = ({
   const [duration, setDuration] = useState(activity.duration);
   const [errorMessage, setErrorMessage] = useState(null);
 
+  const [show, setShow] = useState(false);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -19,7 +21,7 @@ const UpdateActivityForm = ({
         duration
       },
       method: 'post',
-      endpoint: `/routine_activities/${activity.routineActivityId}`, 
+      endpoint: `/routine_activities/${activity.routineActivityId}`,
       token
     });
 
@@ -38,28 +40,40 @@ const UpdateActivityForm = ({
 
   return (
     <>
-      <form onSubmit={handleSubmit} className='UpdateActivityForm'>
-        {errorMessage && <p className='errorMessage'>{errorMessage}</p>}
-        <input
-          type='text'
-          name='routineActivityCount'
-          placeholder='count'
-          value={count}
-          onChange={event => setCount(event.target.value)}
-          maxLength='5'
-          required
-        />
-        <input
-          type='text'
-          name='routineActivityDuration'
-          placeholder='duration'
-          value={duration}
-          onChange={event => setDuration(event.target.value)}
-          maxLength='5'
-          required
-        />
-        <button type='submit'>Update Activity</button>
-      </form>
+      {show
+        ? <button
+          type="button"
+          onClick={() => setShow(!show)}
+        >Close Form</button>
+        : <button
+          type="button"
+          onClick={() => setShow(!show)}
+        >Update Activity</button>
+      }
+      {show &&
+        <form onSubmit={handleSubmit} className='UpdateActivityForm'>
+          {errorMessage && <p className='errorMessage'>{errorMessage}</p>}
+          <input
+            type='text'
+            name='routineActivityCount'
+            placeholder='count'
+            value={count}
+            onChange={event => setCount(event.target.value)}
+            maxLength='5'
+            required
+          />
+          <input
+            type='text'
+            name='routineActivityDuration'
+            placeholder='duration'
+            value={duration}
+            onChange={event => setDuration(event.target.value)}
+            maxLength='5'
+            required
+          />
+          <button type='submit'>Update Activity</button>
+        </form>
+      }
     </>
   )
 }

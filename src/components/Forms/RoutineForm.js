@@ -6,6 +6,8 @@ const RoutineForm = ({ token, routine, fetchMyRoutines }) => {
   const [goal, setGoal] = useState(routine ? routine.goal : '');
   const [errorMessage, setErrorMessage] = useState(null);
 
+  const [show, setShow] = useState(false);
+
   const routineId = routine ? routine.id : undefined;
   
   const handleSubmit = async (event) => {
@@ -35,9 +37,23 @@ const RoutineForm = ({ token, routine, fetchMyRoutines }) => {
   }
 
   return (
-    <>
-      <form onSubmit={handleSubmit} className='routineForm'>
+    <div className="routineFormContainer">
+      {show
+        ? <button 
+            type="button"
+            onClick={() => setShow(!show)}
+          >Close Form</button> 
+        : <button 
+            className="routineFormButton"
+            type="button"
+            onClick={() => setShow(!show)}
+          >{routineId ? "Update Routine" : "Create Routine"}</button>
+      }
+
+      {show &&
+        <form onSubmit={handleSubmit} className='routineForm'>
         {errorMessage && <p className='errorMessage'>{errorMessage}</p>}
+
         <input
           type='text'
           name='routineName'
@@ -48,7 +64,9 @@ const RoutineForm = ({ token, routine, fetchMyRoutines }) => {
           maxLength='20'
           required
         />
-        <input
+        <textarea
+          rows="4"
+          cols="20"
           type='text'
           name='goal'
           placeholder='goal'
@@ -58,7 +76,9 @@ const RoutineForm = ({ token, routine, fetchMyRoutines }) => {
         />
         <button type='submit'>{routineId ? "Update Routine" : "Create Routine"}</button>
       </form>
-    </>
+      }
+
+    </div>
   )
 }
 

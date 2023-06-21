@@ -34,21 +34,22 @@ const MyRoutines = ({ token, user }) => {
     fetchActivities();
   }, []);
 
-  return <>
+  return <div className="myRoutines">
     {token ?
       <>
-        <h2><u>My Routines</u></h2>
+        <div className="myRoutinesHeaderContainer">
+        <h2 className="myRoutinesHeader" ><u>My Routines</u></h2>
 
         <RoutineForm
           token={token}
           user={user}
           fetchMyRoutines={fetchMyRoutines}
         />
-
-        <div className='myRoutines'>
+        </div>
+        <div>
           {
             myRoutines.map((routine, idx) => (
-              <div key={routine.id ?? idx}>
+              <div className="routine" key={routine.id ?? idx}>
                 <h3><u>Name: {routine.name}</u></h3>
 
                 <button
@@ -71,17 +72,17 @@ const MyRoutines = ({ token, user }) => {
                   fetchMyRoutines={fetchMyRoutines}
                 />
 
-                <p>Goal: {routine.goal}</p>
-                <h6>Creator Name: {routine.creatorName}</h6>
-
-                <h3><u>Activities:</u></h3>
-
                 <AddActivityForm
                   activities={activities}
                   routineId={routine.id}
                   token={token}
                   fetchMyRoutines={fetchMyRoutines}
                 />
+
+                <p>Goal: {routine.goal}</p>
+                <h6>Creator Name: {routine.creatorName}</h6>
+
+                <h3><u>Activities:</u></h3>
 
                 {
                   routine.activities.map((activity, idx) => (
@@ -101,19 +102,20 @@ const MyRoutines = ({ token, user }) => {
                         }}
                       >Delete Activity</button>
 
-                      <p>Description: {activity.description}</p>
-                      <p>Duration: {activity.duration}</p>
-                      <p>Count: {activity.count}</p>
-
                       <UpdateActivityForm
                         token={token}
                         fetchMyRoutines={fetchMyRoutines}
                         activity={activity}
                       />
+
+                      <p>Description: {activity.description}</p>
+                      <p>Duration: {activity.duration}</p>
+                      <p>Count: {activity.count}</p>
+
                     </div>
                   ))
                 }
-                <hr></hr>
+
               </div>
             ))
           }
@@ -121,7 +123,7 @@ const MyRoutines = ({ token, user }) => {
       </>
       : history.push('/user/login')
     }
-  </>
+  </div>
 }
 
 export default MyRoutines;

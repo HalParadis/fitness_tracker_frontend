@@ -12,6 +12,8 @@ const AddActivityForm = ({
   const [chosenActivityName, setChosenActivityName] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
 
+  const [show, setShow] = useState(false);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const chosenActivity = activities.find(activity => activity.name == chosenActivityName);
@@ -23,10 +25,10 @@ const AddActivityForm = ({
           activityId: chosenActivity.id
         },
         method: 'post',
-        endpoint: `/routines/${routineId}/activities`, 
+        endpoint: `/routines/${routineId}/activities`,
         token
       });
-  
+
       if (result.message) {
         setErrorMessage(result.message)
       }
@@ -34,7 +36,7 @@ const AddActivityForm = ({
         fetchMyRoutines();
         setErrorMessage(null);
       }
-  
+
       setCount('');
       setDuration('');
       setChosenActivityName('');
@@ -47,40 +49,52 @@ const AddActivityForm = ({
 
   return (
     <>
-      <form onSubmit={handleSubmit} className='addActivityForm'>
-        {errorMessage && <p className='errorMessage'>{errorMessage}</p>}
-        <select
-          name='allActivities'
-          value={chosenActivityName}
-          onChange={() => setChosenActivityName(event.target.value)}
-        >
-          <option value="">Please choose an activity</option>
-          {
-            activities.map(activity => {
-              return <option key={activity.id} value={activity.name}>{activity.name}</option>
-            })
-          }
-        </select>
-        <input
-          type='text'
-          name='routineActivityCount'
-          placeholder='count'
-          value={count}
-          onChange={event => setCount(event.target.value)}
-          maxLength='5'
-          required
-        />
-        <input
-          type='text'
-          name='routineActivityDuration'
-          placeholder='duration'
-          value={duration}
-          onChange={event => setDuration(event.target.value)}
-          maxLength='5'
-          required
-        />
-        <button type='submit'>Add Activity</button>
-      </form>
+      {show
+        ? <button
+          type="button"
+          onClick={() => setShow(!show)}
+        >Close Form</button>
+        : <button
+          type="button"
+          onClick={() => setShow(!show)}
+        >Add Activity</button>
+      }
+      {show &&
+        <form onSubmit={handleSubmit} className='addActivityForm'>
+          {errorMessage && <p className='errorMessage'>{errorMessage}</p>}
+          <select
+            name='allActivities'
+            value={chosenActivityName}
+            onChange={() => setChosenActivityName(event.target.value)}
+          >
+            <option value="">Please choose an activity</option>
+            {
+              activities.map(activity => {
+                return <option key={activity.id} value={activity.name}>{activity.name}</option>
+              })
+            }
+          </select>
+          <input
+            type='text'
+            name='routineActivityCount'
+            placeholder='count'
+            value={count}
+            onChange={event => setCount(event.target.value)}
+            maxLength='5'
+            required
+          />
+          <input
+            type='text'
+            name='routineActivityDuration'
+            placeholder='duration'
+            value={duration}
+            onChange={event => setDuration(event.target.value)}
+            maxLength='5'
+            required
+          />
+          <button type='submit'>Add Activity</button>
+        </form>
+      }
     </>
   )
 }
