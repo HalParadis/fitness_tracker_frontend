@@ -3,13 +3,34 @@
 body {
   background-color: #1D858D;
   font-family: 'Montserrat', sans-serif;
+  margin: 0;
 }
 
 header {
+  background-color: #10495b;
+  color: aliceblue;
+  box-shadow: 0 0 3px 2px black;
+  padding: 0 1em 0 1em;
   width: 100%;
+  min-width: 768px;
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+
+h1 {
+  margin: .5em 0 .5em 0;
+}
+
+nav {
+  min-width: 475px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav > * {
+  padding: .125em;
 }
 
 #app {
@@ -19,7 +40,18 @@ header {
   align-items: center;
 }
 
+.navLink {
+  color: aliceblue;
+}
+
+.lightBlueBackground {
+  background-color: lightblue;
+  color: black;
+  border-radius: 5px;
+}
+
 .activities {
+  background-color: #10495b;
   border: 3px solid black;
   border-radius: 5px;
   padding: 0 1em 0 1em;
@@ -27,10 +59,21 @@ header {
 }
 
 .activity {
+  background-color: #7a8c9d;
   border: 3px solid black;
   border-radius: 3px;
   padding: 1em;
   margin-bottom: 1em;
+}
+
+.activitiesHeader {
+  color: aliceblue;
+}
+
+.activitiesHeaderContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .horizontalLine {
@@ -38,10 +81,17 @@ header {
 }
 
 .publicRoutines {
+  background-color: #10495b;
   border: 3px solid black;
   border-radius: 5px;
   padding: 0 1em 0 1em;
   margin: 1em;
+}
+
+.publicRoutinesHeader {
+  color: aliceblue;
+  display: flex;
+  justify-content: center;
 }
 
 .routine {
@@ -55,10 +105,10 @@ header {
 .routineForm {
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
   padding: 5px;
   border: 3px solid aliceblue;
   margin-bottom: 0.5em;
+  width: 300px;
 }
 
 .routineFormButton {
@@ -66,13 +116,13 @@ header {
   width: fit-content;
 }
 
-.routineFormContainer {
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-}
-
 .userPage {
+  background-color: #10495b;
+  color: aliceblue;
+  border: 3px solid black;
+  border-radius: 5px;
+  padding: 1em;
+  margin: 1em;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -81,6 +131,11 @@ header {
 .userForm {
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+.userFormLink {
+  color: aliceblue;
 }
 
 .myRoutines {
@@ -93,11 +148,11 @@ header {
 
 .myRoutinesHeader {
   color: aliceblue;
-  margin-right: 1em;
 }
 
 .myRoutinesHeaderContainer {
   display: flex;
+  flex-direction: column;
   align-items: center;
 }
 

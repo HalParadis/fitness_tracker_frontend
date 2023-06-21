@@ -15,9 +15,9 @@ const App = () => {
   const [user, setUser] = useState(localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null);
 
   const logout = () => {
-    setToken(null);
+    setToken('');
     setUser(null);
-    history.push('/');
+    history.push('/user/login');
   }
 
   useEffect(() => {
@@ -36,25 +36,45 @@ const App = () => {
       <header>
         <h1>Fitness Tracker</h1>
         <nav>
-          <Link to="/routines">Public Routines</Link> |
-          <Link to="/activities">All Activities</Link> |
+          <Link 
+            id='routinesLink'
+            className='navLink' 
+            to="/routines"
+          >Public Routines</Link> |
+
+          <Link 
+            id='activitiesLink'
+            className='navLink' 
+            to="/activities"
+          >All Activities</Link> |
+
           {
             token
               ? <>
-                <Link to='/myRoutines'>My Routines</Link> |
-                <button
-                  className='logoutButton'
-                  type='button'
-                  onClick={logout}
-                >Log Out</button>
-              </>
-              : <Link to='/user/login'>Log In</Link>
+                  <Link 
+                    id='myRoutinesLink'
+                    className='navLink' 
+                    to='/myRoutines'
+                  >My Routines</Link> |
+
+                  <button
+                    className='logoutButton'
+                    type='button'
+                    onClick={logout}
+                  >Log Out</button>
+                </>
+
+              : <Link 
+                  id='loginLink'
+                  className='navLink loginLink' 
+                  to='/user/login'
+                >Log In</Link>
           }
         </nav>
       </header>
 
       <Route exact path='/'>
-        <h2>Welcome to the site</h2>
+        <Routines />
       </Route>
 
       <Route path='/routines'>
@@ -71,7 +91,6 @@ const App = () => {
       <Route path='/activities'>
         <Activities 
           token={token}
-          user={user}
         />
       </Route>
 

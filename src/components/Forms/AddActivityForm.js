@@ -4,6 +4,7 @@ import { fetchFromAPI } from "../../api";
 const AddActivityForm = ({
   token,
   activities,
+  routineActivities,
   routineId,
   fetchMyRoutines
 }) => {
@@ -11,8 +12,11 @@ const AddActivityForm = ({
   const [duration, setDuration] = useState('');
   const [chosenActivityName, setChosenActivityName] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
-
   const [show, setShow] = useState(false);
+
+  // const allowedActivities = activities.filter(activity => {
+  //   return routineActivities.find(routineActivity => )
+  // });
 
   const handleSubmit = async (event) => {
     event.preventDefault();

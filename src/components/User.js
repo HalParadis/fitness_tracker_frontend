@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { fetchFromAPI } from '../api';
 
@@ -36,6 +36,16 @@ const User = ({ token, setToken, setUser }) => {
     setUsername('');
   }
 
+  useEffect(() => {
+    const linkElements = [...document.getElementsByClassName('navLink')];
+    linkElements.forEach(element => {
+      element.classList.remove('lightBlueBackground');
+      if (element.id == 'loginLink') {
+        element.classList.add('lightBlueBackground');
+      }
+    });
+  }, []);
+
   return (
     <div className='userPage'>
       {token && history.push('/myRoutines')}
@@ -69,10 +79,10 @@ const User = ({ token, setToken, setUser }) => {
         <button type='submit'>SUBMIT</button>
         {
           actionType === 'login'
-            ? <Link to='/user/register' className='profileFormLink'>
+            ? <Link to='/user/register' className='userFormLink'>
                 Don't have an account? Register Here.
               </Link>
-            : <Link to='/user/login' className='profileFormLink'>
+            : <Link to='/user/login' className='userFormLink'>
                 Already have an account? Login here.
               </Link>
         }

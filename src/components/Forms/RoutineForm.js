@@ -11,7 +11,6 @@ const RoutineForm = ({ token, routine, fetchMyRoutines }) => {
   const routineId = routine ? routine.id : undefined;
   
   const handleSubmit = async (event) => {
-    //console.log("error thingy",`routines/${routineId && routineId}`);
     event.preventDefault();
     const result = await fetchFromAPI({
       body: {
@@ -37,7 +36,7 @@ const RoutineForm = ({ token, routine, fetchMyRoutines }) => {
   }
 
   return (
-    <div className="routineFormContainer">
+    <>
       {show
         ? <button 
             type="button"
@@ -78,7 +77,7 @@ const RoutineForm = ({ token, routine, fetchMyRoutines }) => {
       </form>
       }
 
-    </div>
+    </>
   )
 }
 

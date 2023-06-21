@@ -32,25 +32,34 @@ const MyRoutines = ({ token, user }) => {
   useEffect(() => {
     user && fetchMyRoutines();
     fetchActivities();
+
+    const linkElements = [...document.getElementsByClassName('navLink')];
+    linkElements.forEach(element => {
+      element.classList.remove('lightBlueBackground');
+      if (element.id == 'myRoutinesLink') {
+        element.classList.add('lightBlueBackground');
+      }
+    });
   }, []);
 
   return <div className="myRoutines">
     {token ?
       <>
         <div className="myRoutinesHeaderContainer">
-        <h2 className="myRoutinesHeader" ><u>My Routines</u></h2>
+          <h2 className="myRoutinesHeader" ><u>My Routines</u></h2>
 
-        <RoutineForm
-          token={token}
-          user={user}
-          fetchMyRoutines={fetchMyRoutines}
-        />
+          <RoutineForm
+            token={token}
+            user={user}
+            fetchMyRoutines={fetchMyRoutines}
+          />
         </div>
+        
         <div>
           {
             myRoutines.map((routine, idx) => (
               <div className="routine" key={routine.id ?? idx}>
-                <h3><u>Name: {routine.name}</u></h3>
+                <h3><u>{routine.name}</u></h3>
 
                 <button
                   type='button'
@@ -74,20 +83,23 @@ const MyRoutines = ({ token, user }) => {
 
                 <AddActivityForm
                   activities={activities}
+                  routineActivities={routine.activities}
                   routineId={routine.id}
                   token={token}
                   fetchMyRoutines={fetchMyRoutines}
                 />
 
-                <p>Goal: {routine.goal}</p>
+                <p>{routine.goal}</p>
                 <h6>Creator Name: {routine.creatorName}</h6>
+
+                <div className='horizontalLine'></div>
 
                 <h3><u>Activities:</u></h3>
 
                 {
                   routine.activities.map((activity, idx) => (
-                    <div key={activity.id ?? idx}>
-                      <h4>Name: {activity.name}</h4>
+                    <div key={activity.id ?? idx} className='activity'>
+                      <h4>{activity.name}</h4>
 
                       <button
                         type='button'
@@ -108,7 +120,7 @@ const MyRoutines = ({ token, user }) => {
                         activity={activity}
                       />
 
-                      <p>Description: {activity.description}</p>
+                      <p>{activity.description}</p>
                       <p>Duration: {activity.duration}</p>
                       <p>Count: {activity.count}</p>
 

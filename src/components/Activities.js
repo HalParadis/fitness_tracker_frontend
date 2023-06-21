@@ -47,37 +47,46 @@ const Activities = ({
 
   useEffect(() => {
     fetchActivities();
+    const linkElements = [...document.getElementsByClassName('navLink')];
+    linkElements.forEach(element => {
+      element.classList.remove('lightBlueBackground');
+      if (element.id == 'activitiesLink') {
+        element.classList.add('lightBlueBackground');
+      }
+    });
   }, [])
 
 
   return (
     <div className='activities'>
-      <h2><u>Activities</u></h2>
+      <div className='activitiesHeaderContainer'>
+        <h2 className='activitiesHeader'><u>Activities</u></h2>
 
-      {token &&
-        <form onSubmit={handleSubmit} className='addActivityForm'>
-          {errorMessage && <p className='errorMessage'>{errorMessage}</p>}
-          <input
-            type='text'
-            name='activityName'
-            placeholder='name'
-            value={name}
-            onChange={event => setName(event.target.value)}
-            minLength='3'
-            maxLength='20'
-            required
-          />
-          <input
-            type='text'
-            name='activityDescription'
-            placeholder='description'
-            value={description}
-            onChange={event => setDescription(event.target.value)}
-            required
-          />
-          <button type='submit'>Add Activity</button>
-        </form>
-      }
+        {token &&
+          <form onSubmit={handleSubmit} className='addActivityForm'>
+            {errorMessage && <p className='errorMessage'>{errorMessage}</p>}
+            <input
+              type='text'
+              name='activityName'
+              placeholder='name'
+              value={name}
+              onChange={event => setName(event.target.value)}
+              minLength='3'
+              maxLength='20'
+              required
+            />
+            <input
+              type='text'
+              name='activityDescription'
+              placeholder='description'
+              value={description}
+              onChange={event => setDescription(event.target.value)}
+              required
+            />
+            <button type='submit'>Add Activity</button>
+          </form>
+        }
+      </div>
 
       <div className="displayActivities">
         {activities.map((activity, idx) => (

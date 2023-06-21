@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { fetchFromAPI } from '../api'
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-
-const Routines = ({
-  token,
-  user
-}) => {
-
+const Routines = () => {
+  const history = useHistory();
   const [routines, setRoutines] = useState([]);
   const fetchRoutines = async () => {
     const data = await fetchFromAPI({
@@ -19,13 +16,22 @@ const Routines = ({
   }
 
   useEffect(() => {
+    if (history.location.pathname !== '/routines') history.push('/routines');
+
     fetchRoutines();
 
+    const linkElements = [...document.getElementsByClassName('navLink')];
+    linkElements.forEach(element => {
+      element.classList.remove('lightBlueBackground');
+      if (element.id == 'routinesLink') {
+        element.classList.add('lightBlueBackground');
+      }
+    });
   }, [])
 
   return (
     <div className='publicRoutines'>
-      <h2><u>Routines</u></h2>
+      <h2 className='publicRoutinesHeader'><u>Routines</u></h2>
       {
         routines.map((routine, idx) => (
           <div className='routine' key={routine.id ?? idx}>
@@ -38,7 +44,7 @@ const Routines = ({
             <h3><u>Activities:</u></h3>
             {
               routine.activities.map((activity, idx) => (
-                <div key={activity.id ?? idx}>
+                <div className='activity' key={activity.id ?? idx}>
                   <h4>{activity.name}</h4>
                   <p>{activity.description}</p>
                   <p>Duration: {activity.duration}</p>
